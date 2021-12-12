@@ -15,4 +15,12 @@
       app:layout_constraintHeight_percent="0.39"
       />
 
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:textSize="20dp"
+      android:gravity="center"
+      android:text="test"
+      ></TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

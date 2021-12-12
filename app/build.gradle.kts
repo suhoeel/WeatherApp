@@ -3,7 +3,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-
 }
 
 android {
@@ -29,10 +28,10 @@ android {
     }
 
     buildTypes {
-        // https://medium.com/fantageek/how-to-use-gradle-kotlin-dsl-in-android-735e782751eb
+
         getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "$project.rootDir/tools/proguard-rules-debug.pro"
@@ -85,11 +84,48 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
+    // core + fragment, jetpack lib later
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.0")
 
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
+    // google DI lib
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-compiler:2.40.5")
 
-    // Kotlin
-    implementation("androidx.fragment:fragment-ktx:1.4.1")
 
+    // For instrumentation tests
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.40.5")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.40.5")
+
+    // For local unit tests
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.40.5")
+    kaptTest("com.google.dagger:hilt-compiler:2.40.5")
+
+
+//    The APIs in lifecycle-extensions have been deprecated. Instead, add dependencies for the specific Lifecycle artifacts you need.
+//    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+
+    // recyclerview
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+    // Navigation
+    val nav = "2.3.5"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav")
+
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
+
+    // Glide
+    /*implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'*/
+
+    // Retrofit
+    /*implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'*/
+}
+
+kapt {
+    correctErrorTypes = true
 }

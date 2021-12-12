@@ -2,6 +2,6 @@ package com.portfolio.weather
 
 import androidx.fragment.app.Fragment
 
-class WeatherOneFragment() : Fragment(R.layout.fragment_main) {
+class WeatherOneFragment() : Fragment(R.layout.fragment_weather_one) {
 
 }
